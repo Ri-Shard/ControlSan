@@ -1,0 +1,35 @@
+<div id="form1" class="container fadeIn animated" style="margin-top: 5px;" style="display: block">
+    <div class="row">
+
+        <div class="col-6">
+
+            <input [(ngModel)]="searchText"  type="text"  class="form-control"  placeholder="Introduzca el NIT a buscar">
+</div>
+</div>
+<hr />
+
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nit</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let restaurante of restaurantes|filtro:searchText;index as i">
+            <th scope="row">{{ i+1 }} </th>
+            <td>{{ restaurante.nit }}</td>
+            <td>{{ restaurante.nombreRestaurante}}</td>
+            <td>{{ restaurante.direccion }}</td>
+            <td class="text-danger">{{ restaurante.estado }}</td>
+
+            <button class="btn btn-success" (click)="showr()">Mas</button>
+                <button class="btn btn-danger">Borrar</button>
+        </tr>
+    </tbody>
+</table>
+</div>

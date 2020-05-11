@@ -1,0 +1,78 @@
+<div class="container fadeIn animated" style="max-width: 20cm;">
+    <div class="card">
+        <div class="card-header text-md-center">
+            <h2>Registrar Establecimiento </h2>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+            <div class="card-body">
+                <h6>Informacion Restaurante</h6>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-sm-2" style="max-width:100%">
+                        <p>NIT: </p>
+                    </div>
+                    <div class="col-sm-4" style="max-width:100%">
+                        <input type="text"   name="nit"  formControlName="nit"  class="form-control" tabindex="17"  [class.is-invalid]="nitinvalido" />
+                        <div *ngIf="nitinvalido" class="text-danger">Se require el NIT</div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2" style="max-width:100%">
+                        <p>Nombre Restaurante: </p>
+                    </div>
+                    <div class="col-sm-4" style="max-width:100%">
+                        <input type="text"   name="nombreres" maxlength="50"   formControlName="nombreRestaurante"  class="form-control"  tabindex="17" [class.is-invalid]="nombreResinvalido" />
+                        <div *ngIf="nombreResinvalido" class="text-danger">Se requiere el Nombre del Establecimiento</div>
+                    </div>
+                    <div class="col-sm-2" style="max-width:100%">
+                        <p>Direccion: </p>
+                    </div>
+                    <div class="col-sm-4" style="max-width:100%">
+                        <input type="text"   name="direccion"  maxlength="50"  formControlName="direccion"  class="form-control"  tabindex="17" [class.is-invalid]="direccioninvalido" />
+                        <div *ngIf="direccioninvalido" class="text-danger">Se requiere la Direccion del Establecimiento</div>
+                    </div>
+                </div>
+                <hr />
+                <h6>Informacion Dueño</h6>
+                <hr />
+                <div class=" form-group row ">
+                    <div class="col-sm-2 " style="max-width:100% ">
+                        <p>Identificacion: </p>
+                    </div>
+                    <div class="col-sm-4 " style="max-width:100% ">
+                        <input type="text "   name="id "   formControlName="id"  class="form-control " [class.is-invalid]="IDdinvalido"   />
+                        <div *ngIf="IDdinvalido" class="text-danger">Se requiere la Identificacion del Dueño del establecimiento</div>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-sm-2 " style="max-width:100% ">
+                        <p>Nombre: </p>
+                    </div>
+                    <div class="col-sm-4 " style="max-width:100% ">
+                        <input type="text " style="text-transform: uppercase "   name="nombre"   formControlName="nombre"  class="form-control " [class.is-invalid]="Nombredinvalido" />
+                        <div *ngIf="Nombredinvalido" class="text-danger">Se requiere el Nombre del Dueño del establecimiento</div>
+                    </div>
+                    <div class=" col-sm-2 " style="max-width:100% ">
+                        <p>Apellido: </p>
+                    </div>
+                    <div class="col-sm-4 " style="max-width:100% ">
+                        <input type="text " style="text-transform: uppercase "   name="apellido "   formControlName="apellido"  class="form-control " [class.is-invalid]="Apellidodinvalido" />
+                        <div *ngIf="Apellidodinvalido" class="text-danger">Se requiere el Apellido del Dueño del establecimiento</div>
+                    </div>
+                </div>
+                <hr />
+
+
+                <div class="form-group row ">
+                    <div class=" col-sm-2 " style="max-width:100% ">
+                        <button type="submit"  class="btn btn-success " (click)="onSubmit() " [disabled]="formGroup.invalid">Registrar</button>
+                    </div>
+                    <div class="col-sm-4 " style="max-width:100% ">
+                        <button class="btn btn-danger "  [routerLink]="[ '/Gestion'] ">Cancelar</button>
+                    </div>
+            </div>
+    </div>
+    </form>
+    </div>
+    </div>

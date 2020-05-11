@@ -1,0 +1,64 @@
+<div class="body">
+    <div class="return text-right mt-3"><br>
+        <button class="btn btn-danger" [routerLink]="['/Mas']">Atrás</button>
+    </div>
+    <div class="container fadeIn fast">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <br>
+                <h2>Actualizar informacion</h2><br>
+
+                <form [formGroup]="formGroup">
+
+                    <div class="form-group">
+                        <label>Nit</label>
+                        <input type="text" formControlName="nit" class="form-control" value={{nit}} [ngClass]="{ 'is-invalid':  control.nit.errors }" />
+                        <div *ngIf=" control.nit.errors" class="invalid-feedback">
+                            <div *ngIf="control.nit.errors.required">El Nit es requerido</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" formControlName="nombreres" class="form-control" value={{_nombreRes}} [ngClass]="{ 'is-invalid':  control.nombreres.errors }" />
+                        <div *ngIf=" control.nombreres.errors" class="invalid-feedback">
+                            <div *ngIf="control.nombreres.errors.required">El nombre es requerido</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <input type="text" formControlName="estado" class="form-control" readonly value={{_estado}} [ngClass]="{ 'is-invalid':  control.estado.errors }" />
+                        <div *ngIf=" control.estado.errors" class="invalid-feedback">
+                            <div *ngIf="control.estado.errors.required">El estado es requerido</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <input type="text" formControlName="direccion" class="form-control" value={{_direccion}} [ngClass]="{ 'is-invalid':  control.direccion.errors }" />
+                        <div *ngIf=" control.direccion.errors" class="invalid-feedback">
+                            <div *ngIf="control.direccion.errors.required">La direccion es requerido</div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>Identificacion Dueño</label>
+                        <input type="text" formControlName="id" class="form-control" readonly value={{_id}} [ngClass]="{ 'is-invalid':  control.id.errors }" />
+                        <div *ngIf=" control.id.errors" class="invalid-feedback">
+                            <div *ngIf="control.id.errors.required">El Id del dueño es requerido</div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="text-center">
+                        <button class="btn btn-primary mr-1" (click)=" onSubmit()" [disabled]="formGroup.invalid">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

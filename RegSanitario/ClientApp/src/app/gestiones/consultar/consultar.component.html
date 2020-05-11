@@ -1,0 +1,35 @@
+<div class="container fadeIn animated" style="margin-top: 5px;">
+
+    <h1>Consultar </h1>
+    <hr />
+    <div class="return text-right"><br>
+        <button class="btn btn-danger" [routerLink]="['/Gestion']">Atrás</button>
+    </div>
+    <div class="col-6">
+        <input [(ngModel)]="searchText"  type="text"  class="form-control"  placeholder="Introduzca el NIT a buscar">
+</div>
+<hr />
+
+<div id="form2" class="alert alert-info text-center mt 3 " style="display: none;">
+    <h4 class="alert-heading">
+        No hay Registros </h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x "></i>
+    </p>
+</div>
+
+<div id="form1" class="card-columns" *ngFor="let restaurante of restaurantes|filtro:searchText;index as i" style="display: block;">
+    <div class="card">
+        <h5 class="card-title">{{restaurante.nombreRestaurante}}</h5>
+        <hr />
+        <div class="card-body">
+            <h6>Nit: {{restaurante.nit}}</h6>
+            <h5>Direccion: {{restaurante.direccion}}</h5>
+            <button type="button" class="btn btn-primary btn-block" (click)="save(restaurante)" [routerLink]="['/Mas']">
+               Ver Mas
+            </button>
+        </div>
+    </div>
+
+</div>
+</div>
