@@ -86,8 +86,23 @@ namespace Datos
             return restaurante;
             
          }
+                 public void Modificar(Restaurante restaurante)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = $"UPDATE Restaurantes SET NombreRestaurante = @NombreRestaurante , Direccion = @Direccion , Estado = @Estado ,Evaluacion =@Evaluacion" +
+                    $", Direccion = @Direccion ,Idueño =@Idueño WHERE Nit = @Nit";
+                command.Parameters.AddWithValue("@Nit", restaurante.Nit);
+                command.Parameters.AddWithValue("@NombreRestaurante", restaurante.NombreRestaurante);
+                command.Parameters.AddWithValue("@Estado", restaurante.Estado);
+                command.Parameters.AddWithValue("@Idueño", restaurante.Id);
+                command.Parameters.AddWithValue("@Direccion", restaurante.Direccion);
+                command.Parameters.AddWithValue("@Evaluacion", restaurante.Evaluacion);
+                var filas = command.ExecuteNonQuery();
+            }
+        }
+    }
 
 
         
-    }
 }

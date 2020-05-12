@@ -2,7 +2,7 @@ CREATE DATABASE [Evaluaciones];
 USE  [Evaluaciones]
 
 CREATE TABLE [dbo].[Restaurantes](
-    [IDueño] [nvarchar] (10) NOT NULL,
+    [IDueño] [nvarchar] (10)  NULL,
 	[NombreRestaurante] [nvarchar](50) NULL,
 	[Direccion] [nvarchar](20) NULL,
 	[Evaluacion] [nvarchar] (15)NULL,
@@ -12,8 +12,8 @@ CREATE TABLE [dbo].[Restaurantes](
 ) 
 GO
 CREATE TABLE [dbo].[Dueños](	
-	[Nombre] [nvarchar](30) NOT NULL,
-	[Apellido] [nvarchar](30) NOT NULL,
+	[Nombre] [nvarchar](30)  NULL,
+	[Apellido] [nvarchar](30)  NULL,
     [ID] [nvarchar] (10) NOT NULL PRIMARY KEY,
 
 ) 

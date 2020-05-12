@@ -49,9 +49,10 @@ export class RestauranteService {
        catchError(this.handleErrorService.handleError<string>('Eliminar Restaurante', null))
      );
  }
+
   /** PUT: update the profesor on the server */
   put(restaurante: Restaurante): Observable<any> {
-    const url = `${this.baseUrl}api/Cliente/${restaurante.nit}`;
+    const url = `${this.baseUrl}api/Restaurante/${restaurante.nit}`;
     return this.http.put(url, restaurante, httpOptions)
       .pipe(
         tap(_ => this.handleErrorService.log('datos enviados')),

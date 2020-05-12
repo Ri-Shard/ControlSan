@@ -63,16 +63,27 @@ namespace RegSanitario.Controllers
             return restaurante;
         }
 
-        [HttpPut("{nit}")]
-        public ActionResult<string> Put(string nit )
-        { 
-         Restaurante restaurante = _restauranteService.BuscarPorNit(nit);
-          var respuesta = _restauranteService.Guardar(restaurante);
-          if (respuesta.Error)
-          {
-              return BadRequest(respuesta.Mensaje);
-          }
-          return Ok(respuesta.Restaurante);        }
-
-    }
+        [HttpPut("{Nit}")]
+        public ActionResult<RestauranteViewModel> Put(string Nit, RestauranteInputModel restauranteInput)
+        {
+            Restaurante restaurante = mapearRestaurante(restauranteInput);
+            var id=_restauranteService.BuscarPorNit(restaurante.Nit);
+            if(id==null){
+                return BadRequest("No encontrado");
+            }else
+            {
+                var response = _restauranteService.Modificar(restaurante);
+                if (response.Error) 
+                {
+                    ModelState.AddModelError("Modificar restaurante", response.Mensaje);
+                    var problemDetails = new ValidationProblemDetails(ModelState)
+                    {
+                        Status = StatusCodes.Status400BadRequest,
+                    };
+                    return BadRequest(response.Mensaje);
+                }
+                return Ok(response.Restaurante);                
+            }
+        }
+   }
 }

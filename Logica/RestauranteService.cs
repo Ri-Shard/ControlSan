@@ -91,23 +91,45 @@ namespace Logica
             return restaurantes;
         }
 
-                public GuardarRestauranteResponse Modificar(Restaurante restaurante)
-        {
+        public ModificarRestauranteResponse Modificar(Restaurante restaurante)
+        {            
             try
             {
-                restaurante.Evaluacio();
                 _conexion.Open();
-                _repositorio.Guardar(restaurante);
-                _conexion.Close();
-                return new GuardarRestauranteResponse(restaurante);
+                if (restaurante != null)
+                {
+                    _repositorio.Modificar(restaurante);
+                    _conexion.Close();
+                    return new ModificarRestauranteResponse(restaurante);
+                }
+                else
+                {
+                    return new ModificarRestauranteResponse($"Lo sentimos, {restaurante.Nit} no se encuentra registrada.");
+                }
             }
             catch (Exception e)
             {
-                return new GuardarRestauranteResponse($"Error de la Aplicacion: {e.Message}");
+
+                return new ModificarRestauranteResponse($"Error de la Aplicación: {e.Message}");
             }
             finally { _conexion.Close(); }
         }
 
-        
+                public class ModificarRestauranteResponse
+        {
+            public ModificarRestauranteResponse(Restaurante restaurante)
+            {
+                Error = false;
+                Restaurante = restaurante;
+            }
+            public ModificarRestauranteResponse(string mensaje)
+            {
+                Error = true;
+                Mensaje = mensaje;
+            }
+            public bool Error { get; set; }
+            public string Mensaje { get; set; }
+            public Restaurante Restaurante { get; set; }
+        }
     }
 }
