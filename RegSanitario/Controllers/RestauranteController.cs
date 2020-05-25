@@ -67,8 +67,8 @@ namespace RegSanitario.Controllers
         public ActionResult<RestauranteViewModel> Put(string Nit, RestauranteInputModel restauranteInput)
         {
             Restaurante restaurante = mapearRestaurante(restauranteInput);
-            var id=_restauranteService.BuscarPorNit(restaurante.Nit);
-            if(id==null){
+            var nit=_restauranteService.BuscarPorNit(restaurante.Nit);
+            if(nit==null){
                 return BadRequest("No encontrado");
             }else
             {
