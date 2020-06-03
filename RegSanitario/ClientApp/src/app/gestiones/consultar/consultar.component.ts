@@ -21,12 +21,12 @@ export class ConsultarComponent implements OnInit {
   ngOnInit() {
     this._restauranteService.get().subscribe(c => {
       this.restaurantes = c;
-      if (this.restaurantes == null) {
-        document.getElementById('form2').style.display = 'block';
-        document.getElementById('form1').style.display = 'none';
-      } else {
+      if (this.restaurantes != null) {
         document.getElementById('form1').style.display = 'block';
         document.getElementById('form2').style.display = 'none';
+      } else {
+        document.getElementById('form2').style.display = 'block';
+        document.getElementById('form1').style.display = 'none';
       }
     });
   }

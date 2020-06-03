@@ -9,7 +9,9 @@ namespace Logica
     {
 
         private readonly ConnectionManager _conexion;
+
         private readonly RestauranteRepository _repositorio;
+
         public RestauranteService(string connectionString)
         {
             _conexion = new ConnectionManager(connectionString);
@@ -19,7 +21,12 @@ namespace Logica
         public GuardarRestauranteResponse Guardar(Restaurante restaurante)
         {
             try
-            {
+            {   var res = BuscarPorNit(restaurante.Nit);
+                if (res!= null)
+                {
+                    return new GuardarRestauranteResponse("Error el Restaurante ya se encuentra registrado");
+                }
+
                 restaurante.Evaluacio();
                 _conexion.Open();
                 _repositorio.Guardar(restaurante);

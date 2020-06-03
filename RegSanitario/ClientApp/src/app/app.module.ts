@@ -22,6 +22,7 @@ import { GestionComponent } from './perfil/gestion/gestion.component';
 import { ModificarComponent } from './gestiones/modificar/modificar.component';
 import { ConsultarComponent } from './gestiones/consultar/consultar.component';
 import { MasComponent } from './gestiones/mas/mas.component';
+import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
 
 @NgModule({
    declarations: [
@@ -41,7 +42,8 @@ import { MasComponent } from './gestiones/mas/mas.component';
     GestionComponent,
     ModificarComponent,
     ConsultarComponent,
-    MasComponent
+    MasComponent,
+    EvaluacionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

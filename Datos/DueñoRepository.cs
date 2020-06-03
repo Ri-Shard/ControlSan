@@ -29,7 +29,15 @@ namespace Datos
                 
             }
         }
-
+        public void Eliminar(Dueño dueño)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Delete from Dueños where ID=@ID";
+                command.Parameters.AddWithValue("@ID",dueño.ID);
+                command.ExecuteNonQuery();
+            }
+        }
      public List<Dueño> ConsultarTodos()
         {
             SqlDataReader dataReader;

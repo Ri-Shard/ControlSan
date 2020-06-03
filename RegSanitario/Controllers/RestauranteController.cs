@@ -11,37 +11,45 @@ using RegSanitario.Models;
 
 namespace RegSanitario.Controllers
 {
-   [Route("api/[controller]")]
-   [ApiController]
-   public class RestauranteController: ControllerBase
-   {
-       private readonly RestauranteService _restauranteService;
-       public IConfiguration Configuration {get;}
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RestauranteController : ControllerBase
+    {
+        private readonly RestauranteService _restauranteService;
+        public IConfiguration Configuration { get; }
 
-       public RestauranteController(IConfiguration configuration){
-           Configuration = configuration;
-           string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
-           _restauranteService = new RestauranteService(connectionString);
-       }
+        public RestauranteController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            _restauranteService = new RestauranteService(connectionString);
+        }
 
-      [HttpGet]
-      public IEnumerable<RestauranteViewModel> Get() {
-          var restaurantes = _restauranteService.ConsultarTodos().Select(u => new RestauranteViewModel(u));
-          return restaurantes;
-      }
-      
-      [HttpPost]
-      public ActionResult<RestauranteViewModel> Post(RestauranteInputModel restauranteInput) {
-          
-          Restaurante restaurante = mapearRestaurante(restauranteInput);
-          var respuesta = _restauranteService.Guardar(restaurante);
-          if (respuesta.Error)
-          {
-              return BadRequest(respuesta.Mensaje);
-          }
-          return Ok(respuesta.Restaurante);
-      }
-              // DELETE: api/Persona/5
+        [HttpGet]
+        public IEnumerable<RestauranteViewModel> Get()
+        {
+            var restaurantes = _restauranteService.ConsultarTodos().Select(u => new RestauranteViewModel(u));
+            return restaurantes;
+        }
+
+        [HttpPost]
+        public ActionResult<RestauranteViewModel> Post(RestauranteInputModel restauranteInput)
+        {
+
+            Restaurante restaurante = mapearRestaurante(restauranteInput);
+            var respuesta = _restauranteService.Guardar(restaurante);
+            if (respuesta.Error)
+            {
+                ModelState.AddModelError("Guardar Restaurante", respuesta.Mensaje);
+                var problemDetails = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                };
+                return BadRequest(problemDetails);
+            }
+            return Ok(respuesta.Restaurante);
+        }
+        // DELETE: api/Persona/5
         [HttpDelete("{Nit}")]
         public ActionResult<string> Delete(string Nit)
         {
@@ -67,13 +75,15 @@ namespace RegSanitario.Controllers
         public ActionResult<RestauranteViewModel> Put(string Nit, RestauranteInputModel restauranteInput)
         {
             Restaurante restaurante = mapearRestaurante(restauranteInput);
-            var nit=_restauranteService.BuscarPorNit(restaurante.Nit);
-            if(nit==null){
+            var nit = _restauranteService.BuscarPorNit(restaurante.Nit);
+            if (nit == null)
+            {
                 return BadRequest("No encontrado");
-            }else
+            }
+            else
             {
                 var response = _restauranteService.Modificar(restaurante);
-                if (response.Error) 
+                if (response.Error)
                 {
                     ModelState.AddModelError("Modificar restaurante", response.Mensaje);
                     var problemDetails = new ValidationProblemDetails(ModelState)
@@ -82,8 +92,8 @@ namespace RegSanitario.Controllers
                     };
                     return BadRequest(response.Mensaje);
                 }
-                return Ok(response.Restaurante);                
+                return Ok(response.Restaurante);
             }
         }
-   }
+    }
 }
