@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RegSanitario.Models;
-
+using Datos;
 namespace RegSanitario.Controllers
 {
    [Route("api/[controller]")]
@@ -16,13 +16,10 @@ namespace RegSanitario.Controllers
    public class DueñoController: ControllerBase
    {
        private readonly DueñoService _dueñoService;
-       public IConfiguration Configuration {get;}
-
-       public DueñoController(IConfiguration configuration){
-           Configuration = configuration;
-           string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
-           _dueñoService = new DueñoService(connectionString);
-       }
+        public DueñoController(RestauranteContext context)
+        {
+            _dueñoService = new DueñoService(context);
+        }
 
       [HttpGet]
       public IEnumerable<DueñoViewModel> Get() {

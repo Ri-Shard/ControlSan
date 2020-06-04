@@ -2,45 +2,41 @@
 using Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logica
 {
     public class RestauranteService
     {
+        private readonly RestauranteContext _context;
 
-        private readonly ConnectionManager _conexion;
-
-        private readonly RestauranteRepository _repositorio;
-
-        public RestauranteService(string connectionString)
+        public RestauranteService(RestauranteContext context)
         {
-            _conexion = new ConnectionManager(connectionString);
-            _repositorio = new RestauranteRepository(_conexion);
+            _context = context;
         }
 
         public GuardarRestauranteResponse Guardar(Restaurante restaurante)
         {
             try
-            {   var res = BuscarPorNit(restaurante.Nit);
-                if (res!= null)
-                {
-                    return new GuardarRestauranteResponse("Error el Restaurante ya se encuentra registrado");
-                }
+            {
+                var res = _context.Restaurantes.Find(restaurante.Nit);
+                if (res != null)
+                {
+                    return new GuardarRestauranteResponse("Error el Restaurante ya se encuentra registrado");
+                }
 
                 restaurante.Evaluacio();
-                _conexion.Open();
-                _repositorio.Guardar(restaurante);
-                _conexion.Close();
+                _context.Restaurantes.Add(restaurante);
+                _context.SaveChanges();
+
                 return new GuardarRestauranteResponse(restaurante);
             }
             catch (Exception e)
             {
                 return new GuardarRestauranteResponse($"Error de la Aplicacion: {e.Message}");
             }
-            finally { _conexion.Close(); }
         }
-
-        public class GuardarRestauranteResponse 
+        public class GuardarRestauranteResponse
         {
             public GuardarRestauranteResponse(Restaurante restaurante)
             {
@@ -57,16 +53,21 @@ namespace Logica
             public Restaurante Restaurante { get; set; }
         }
 
+        public List<Restaurante> ConsultarTodos()
+        {
+            List<Restaurante> restaurantes = _context.Restaurantes.ToList();
+            return restaurantes;
+        }
+
         public string Eliminar(string Nit)
         {
             try
             {
-                _conexion.Open();
-                var restaurante = _repositorio.BuscarPorNit(Nit);
+                var restaurante = _context.Restaurantes.Find(Nit);
                 if (restaurante != null)
                 {
-                    _repositorio.Eliminar(restaurante);
-                    _conexion.Close();
+                    _context.Restaurantes.Remove(restaurante);
+                    _context.SaveChanges();
                     return ($"El registro {restaurante.NombreRestaurante} se ha eliminado satisfactoriamente.");
                 }
                 else
@@ -79,64 +80,44 @@ namespace Logica
 
                 return $"Error de la Aplicación: {e.Message}";
             }
-            finally { _conexion.Close(); }
 
         }
 
-         public Restaurante BuscarPorNit(string Nit)
+        public string Modificar(Restaurante restauranteN)
         {
-            _conexion.Open();
-            Restaurante restaurante = _repositorio.BuscarPorNit(Nit);
-            _conexion.Close();
-            return restaurante;
-        }
-         public List<Restaurante> ConsultarTodos()
-        {
-            _conexion.Open();
-            List<Restaurante> restaurantes = _repositorio.ConsultarTodos();
-            _conexion.Close();
-            return restaurantes;
-        }
-
-        public ModificarRestauranteResponse Modificar(Restaurante restaurante)
-        {            
             try
             {
-                _conexion.Open();
-                if (restaurante != null)
+                var restauranteV = _context.Restaurantes.Find(restauranteN.Nit);
+                if (restauranteV != null)
                 {
-                    _repositorio.Modificar(restaurante);
-                    _conexion.Close();
-                    return new ModificarRestauranteResponse(restaurante);
+                    restauranteV.Nit = restauranteN.Nit;
+                    restauranteV.NombreRestaurante = restauranteN.NombreRestaurante;
+                    restauranteV.Direccion = restauranteN.Direccion;
+                    restauranteV.Evaluacion = restauranteN.Evaluacion;
+                    restauranteV.Estado = restauranteN.Estado;
+                    restauranteV.Id = restauranteN.Id;
+                    _context.Restaurantes.Update(restauranteV);
+                    _context.SaveChanges();
+                    return ($"El registro {restauranteN.Nit} se ha modificado satisfactoriamente");
+
                 }
                 else
                 {
-                    return new ModificarRestauranteResponse($"Lo sentimos, {restaurante.Nit} no se encuentra registrada.");
+                    return ($"Lo sentimos, {restauranteN.Nit} no se encuentra registrado.");
+
                 }
             }
             catch (Exception e)
             {
-
-                return new ModificarRestauranteResponse($"Error de la Aplicación: {e.Message}");
+                return ($"Error de la aplicacion: {e.Message}.");
             }
-            finally { _conexion.Close(); }
         }
 
-                public class ModificarRestauranteResponse
+        public Restaurante BuscarPorNit(string Nit)
         {
-            public ModificarRestauranteResponse(Restaurante restaurante)
-            {
-                Error = false;
-                Restaurante = restaurante;
-            }
-            public ModificarRestauranteResponse(string mensaje)
-            {
-                Error = true;
-                Mensaje = mensaje;
-            }
-            public bool Error { get; set; }
-            public string Mensaje { get; set; }
-            public Restaurante Restaurante { get; set; }
+
+            Restaurante restaurante = _context.Restaurantes.Find(Nit);
+            return restaurante;
         }
     }
 }

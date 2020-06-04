@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RegSanitario.Models;
+using Datos;
+using System.ComponentModel.DataAnnotations;
 
 namespace RegSanitario.Controllers
 {
@@ -16,13 +18,9 @@ namespace RegSanitario.Controllers
     public class RestauranteController : ControllerBase
     {
         private readonly RestauranteService _restauranteService;
-        public IConfiguration Configuration { get; }
-
-        public RestauranteController(IConfiguration configuration)
+        public RestauranteController(RestauranteContext context)
         {
-            Configuration = configuration;
-            string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
-            _restauranteService = new RestauranteService(connectionString);
+            _restauranteService = new RestauranteService(context);
         }
 
         [HttpGet]
@@ -70,7 +68,7 @@ namespace RegSanitario.Controllers
             };
             return restaurante;
         }
-
+        // PUT: api/Restaurante/5
         [HttpPut("{Nit}")]
         public ActionResult<RestauranteViewModel> Put(string Nit, RestauranteInputModel restauranteInput)
         {
@@ -82,18 +80,11 @@ namespace RegSanitario.Controllers
             }
             else
             {
-                var response = _restauranteService.Modificar(restaurante);
-                if (response.Error)
-                {
-                    ModelState.AddModelError("Modificar restaurante", response.Mensaje);
-                    var problemDetails = new ValidationProblemDetails(ModelState)
-                    {
-                        Status = StatusCodes.Status400BadRequest,
-                    };
-                    return BadRequest(response.Mensaje);
-                }
-                return Ok(response.Restaurante);
+                string respuesta = _restauranteService.Modificar(restaurante);
+               return Ok(respuesta);
             }
         }
+ 
+        
     }
 }
