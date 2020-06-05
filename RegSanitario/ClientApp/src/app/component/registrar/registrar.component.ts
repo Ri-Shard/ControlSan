@@ -8,31 +8,25 @@ import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-registrar',
+  templateUrl: './registrar.component.html',
+  styleUrls: ['./registrar.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegistrarComponent implements OnInit {
 
-  usuario = new UsuarioModel();
+  usuario: UsuarioModel;
   recordarme = false;
 
   constructor( private auth: AuthService,
                private router: Router ) { }
 
   ngOnInit() {
-
-    if ( localStorage.getItem('email') ) {
-      this.usuario.email = localStorage.getItem('email');
-      this.recordarme = true;
-    }
-
+    this.usuario = new UsuarioModel();
   }
 
+  onSubmit( form: NgForm ) {
 
-  login( form: NgForm ) {
-
-    if (  form.invalid ) { return; }
+    if ( form.invalid ) { return; }
 
     Swal.fire({
       allowOutsideClick: false,
@@ -41,8 +35,7 @@ export class LoginComponent implements OnInit {
     });
     Swal.showLoading();
 
-
-    this.auth.login( this.usuario )
+    this.auth.nuevoUsuario( this.usuario )
       .subscribe( resp => {
 
         console.log(resp);
@@ -52,11 +45,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', this.usuario.email);
         }
 
-
         this.router.navigateByUrl('/home');
 
       }, (err) => {
-
         console.log(err.error.error.message);
         Swal.fire({
           icon: 'error',
@@ -64,7 +55,7 @@ export class LoginComponent implements OnInit {
           text: err.error.error.message
         });
       });
-
   }
+
 
 }

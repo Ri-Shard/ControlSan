@@ -58,10 +58,7 @@ namespace Logica
             List<Dueño> dueños = _context.Dueños.ToList();
             return dueños;
         }
-        public Dueño Validate(string ID, string password) 
-        {
-            return _context.Dueños.FirstOrDefault(t => t.ID == ID && t.Password == password && t.Estado == "AC");
-        }
+
 
         public string Eliminar(string ID)
         {
@@ -97,8 +94,6 @@ namespace Logica
                     dueñoV.ID = dueñoN.ID;
                     dueñoV.Nombre = dueñoN.Nombre;
                     dueñoV.Apellido = dueñoN.Apellido;
-                    dueñoV.Password = dueñoN.Password;
-                    dueñoV.Celular = dueñoN.Celular;
                     _context.Dueños.Update(dueñoV);
                     _context.SaveChanges();
                     return ($"El registro {dueñoN.ID} se ha modificado satisfactoriamente");

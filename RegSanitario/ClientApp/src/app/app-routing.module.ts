@@ -11,6 +11,10 @@ import { MasComponent } from './gestiones/mas/mas.component';
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './component/login/login.component';
+import { RegistrarComponent } from './component/registrar/registrar.component';
+import { HomeComponent } from './home/home.component';
+
 const routes: Routes = [
   {
     path: 'Restaurante',
@@ -51,7 +55,22 @@ const routes: Routes = [
   {
     path: 'Registro',
     component: RegistroComponent
-  }
+  },
+  {
+    path: 'Registrar',
+    component: RegistrarComponent
+  },
+  {
+    path: 'Login',
+    component: LoginComponent
+  },
+  {
+    path: 'Home',
+    component: HomeComponent
+  },
+
+    { path: '**', redirectTo: '' }
+
 ];
 @NgModule({
   declarations: [],

@@ -23,6 +23,9 @@ import { ModificarComponent } from './gestiones/modificar/modificar.component';
 import { ConsultarComponent } from './gestiones/consultar/consultar.component';
 import { MasComponent } from './gestiones/mas/mas.component';
 import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
+import { RegistrarComponent } from './component/registrar/registrar.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
    declarations: [
@@ -39,11 +42,13 @@ import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
     FiltroPipe,
     AlertModalComponent,
     LoginComponent,
+    RegistrarComponent,
     GestionComponent,
     ModificarComponent,
     ConsultarComponent,
     MasComponent,
-    EvaluacionComponent
+    EvaluacionComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,10 +56,9 @@ import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-    ]),
-    AppRoutingModule
+    RouterModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   entryComponents: [AlertModalComponent],
   providers: [],
