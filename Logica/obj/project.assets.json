@@ -6785,36 +6785,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rikar\\.nuget\\packages\\": {}
+    "C:\\Users\\Martinez\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Logica\\Logica.csproj",
+      "projectUniqueName": "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Logica\\Logica.csproj",
       "projectName": "Logica",
-      "projectPath": "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Logica\\Logica.csproj",
-      "packagesPath": "C:\\Users\\rikar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Logica\\obj\\",
+      "projectPath": "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Logica\\Logica.csproj",
+      "packagesPath": "C:\\Users\\Martinez\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Logica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rikar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Martinez\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Datos\\Datos.csproj": {
-              "projectPath": "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Datos\\Datos.csproj"
+            "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Datos\\Datos.csproj": {
+              "projectPath": "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Datos\\Datos.csproj"
             },
-            "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\rikar\\Documents\\WEB\\Proyecto\\Entity\\Entity.csproj"
+            "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\Martinez\\Documents\\Web\\Proyecto ricardo\\Entity\\Entity.csproj"
             }
           }
         }
@@ -6842,7 +6840,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

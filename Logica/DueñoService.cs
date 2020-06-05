@@ -58,10 +58,6 @@ namespace Logica
             List<Dueño> dueños = _context.Dueños.ToList();
             return dueños;
         }
-        public Dueño Validate(string ID, string password) 
-        {
-            return _context.Dueños.FirstOrDefault(t => t.ID == ID && t.Password == password && t.Estado == "AC");
-        }
 
         public string Eliminar(string ID)
         {
