@@ -1,16 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RestauranteComponent } from './perfil/restaurante/restaurante.component';
 import { ManipuladorComponent } from './perfil/manipulador/manipulador.component';
 import { RegistroComponent } from './perfil/registro/registro.component';
-import { AppRoutingModule } from './app-routing.module';
 import { ConsultaComponent } from './perfil/consulta/consulta.component';
 import { InformateComponent } from './perfil/informate/informate.component';
 import { NormatividadComponent } from './info/normatividad/normatividad.component';
@@ -23,6 +22,11 @@ import { ModificarComponent } from './gestiones/modificar/modificar.component';
 import { ConsultarComponent } from './gestiones/consultar/consultar.component';
 import { MasComponent } from './gestiones/mas/mas.component';
 import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
+import { routes } from './app.routes';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { RegUsuarioComponent } from './components/reg-usuario/reg-usuario.component';
 
 @NgModule({
    declarations: [
@@ -43,19 +47,22 @@ import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
     ModificarComponent,
     ConsultarComponent,
     MasComponent,
-    EvaluacionComponent
+    EvaluacionComponent,
+    RegUsuarioComponent,
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    RouterModule,
-    AppRoutingModule
   ],
   entryComponents: [AlertModalComponent],
-  providers: [],
+  providers: [
+    AngularFireAuth
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

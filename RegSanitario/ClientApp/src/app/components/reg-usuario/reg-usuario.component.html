@@ -2,7 +2,7 @@
     <div class="center content-center">
         <div class="m-5 col">
             <div class="row">
-                <form [formGroup]="formulario" (submit)="login()">
+                <form [formGroup]="formulario" (submit)="registrar()">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Correo</label>
                         <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -16,9 +16,9 @@
                         <label class="form-check-label" for="exampleCheck1">Puto el que me toque</label>
                     </div>
                     <div class="form-group">
-                        <a (click)="navegar()">Registrarse</a>
+                        <a (click)="navegar()">Ya tienes cuenta?</a>
                     </div>
-                    <button type="submit" class="btn btn-primary">ingresar</button>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
                 </form>
             </div>
         </div>
