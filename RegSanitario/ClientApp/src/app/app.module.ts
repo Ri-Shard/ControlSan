@@ -51,9 +51,7 @@ import { EvaluacionComponent } from './perfil/evaluacion/evaluacion.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-    ]),
+    RouterModule,
     AppRoutingModule
   ],
   entryComponents: [AlertModalComponent],
