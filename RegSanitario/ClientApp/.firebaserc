@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "loginregsan": {
+      "hosting": {
+        "RegSanitario": [
+          "loginregsan"
+        ]
+      }
+    }
+  }
+}
