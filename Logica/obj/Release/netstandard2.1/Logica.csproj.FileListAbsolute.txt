@@ -1,0 +1,14 @@
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Logica.deps.json
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Logica.dll
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Logica.pdb
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Datos.dll
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Entity.dll
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Datos.pdb
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\bin\Release\netstandard2.1\Entity.pdb
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.csprojAssemblyReference.cache
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.AssemblyInfoInputs.cache
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.AssemblyInfo.cs
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.csproj.CopyComplete
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.dll
+C:\Users\Martinez\Documents\Web\Proyecto ricardo\Logica\obj\Release\netstandard2.1\Logica.pdb
